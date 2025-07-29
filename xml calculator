@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="@drawable/m"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="241dp"
+        android:layout_height="58dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="39dp"
+        android:text="CALCULATOR"
+        android:textSize="35dp"
+        android:textColor="@color/white"
+        tools:layout_editor_absoluteX=
+            "59dp"
+        tools:layout_editor_absoluteY="45dp" />
+
+    <EditText
+        android:id="@+id/EditText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="130dp"
+        android:textColor="@color/white"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="enter num1" />
+
+    <EditText
+        android:id="@+id/EditText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="186dp"
+        android:textColor="@color/white"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="enter num2" />
+
+    <EditText
+        android:id="@+id/EditText3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:textColor="@color/white"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="241dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="result" />
+
+    <Button
+        android:id="@+id/bt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="304dp"
+        android:layout_marginTop="117dp"
+        android:text="+" />
+
+    <Button
+        android:id="@+id/bt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="303dp"
+        android:layout_marginTop="192dp"
+        android:text="-" />
+
+    <Button
+        android:id="@+id/bt3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="264dp"
+        android:layout_marginEnd="20dp"
+        android:text="/" />
+
+    <Button
+        android:id="@+id/bt4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="336dp"
+        android:layout_marginEnd="21dp"
+        android:text="*" />
+
+</RelativeLayout>
