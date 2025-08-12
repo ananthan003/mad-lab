@@ -1,0 +1,80 @@
+package com.example.myapplication;
+
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
+
+
+
+public class MainActivity extends AppCompatActivity {
+
+    EditText nameEditText, phoneEditText, emailEditText;
+    RadioGroup genderRadioGroup;
+    Button submitButton;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+
+        nameEditText = findViewById(R.id.ename);
+        phoneEditText = findViewById(R.id.ephone);
+        emailEditText = findViewById(R.id.email);
+        genderRadioGroup = findViewById(R.id.radioGroup1);
+        submitButton = findViewById(R.id.button);
+
+
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                validateForm();
+            }
+        });
+    }
+
+    private void validateForm() {
+        String name = nameEditText.getText().toString().trim();
+        String phone = phoneEditText.getText().toString().trim();
+        String email = emailEditText.getText().toString().trim();
+        int selectedGenderId = genderRadioGroup.getCheckedRadioButtonId();
+
+        if (name.isEmpty() || name.matches(".*\\d.*") ){
+            showToast("Please enter your name");
+            return;
+        }
+
+        if (phone.isEmpty() || phone.length() < 10) {
+            showToast("Please enter a valid phone number");
+            return;
+        }
+
+        if (email.isEmpty() || !email.contains("@")) {
+            showToast("Please enter a valid email address");
+            return;
+        }
+
+        if (selectedGenderId == -1) {
+            showToast("Please select your gender");
+            return;
+        }
+
+        RadioButton selectedRadioButton = findViewById(selectedGenderId);
+        String gender = selectedRadioButton.getText().toString();
+
+        showToast("Registration Successful!\n" +
+                "Name: " + name + "\n" +
+                "Phone: " + phone + "\n" +
+                "Email: " + email + "\n" +
+                "Gender: " + gender);
+    }
+
+    private void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+}
