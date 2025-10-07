@@ -1,0 +1,186 @@
+mainactivity.xml
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="158dp"
+        android:layout_marginTop="74dp"
+        android:text="LOGIN"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.037" />
+
+    <EditText
+        android:id="@+id/et1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="177dp"
+        android:layout_marginEnd="34dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.726"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="76dp" />
+
+    <EditText
+        android:id="@+id/et2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="265dp"
+        android:layout_marginEnd="31dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        tools:layout_editor_absoluteX="147dp"
+        tools:layout_editor_absoluteY="145dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="192dp"
+        android:text="USERNAME"
+        tools:layout_editor_absoluteX="37dp"
+        tools:layout_editor_absoluteY="89dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="275dp"
+        android:text="PASSWORD"
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="150dp" />
+
+    <Button
+        android:id="@+id/bt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="116dp"
+        android:text="Button"
+        tools:layout_editor_absoluteX="127dp"
+        tools:layout_editor_absoluteY="258dp" />
+
+</RelativeLayout>
+
+main activity.java
+package com.example.myapplication;
+
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+    EditText ET1, ET2;
+    Button BT1;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        ET1 = findViewById(R.id.et1);
+        ET2 = findViewById(R.id.et2);
+        BT1 = findViewById(R.id.bt1);
+
+        BT1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String username = ET1.getText().toString().trim();
+                String Password = ET2.getText().toString().trim();
+
+                if (username.isEmpty() || Password.isEmpty()) {
+                    Toast.makeText(MainActivity.this, "Enter the credentials", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "Login successfull", Toast.LENGTH_SHORT).show();
+                }
+                Intent intent = new Intent(MainActivity.this, WelcomeActivity.class);
+                intent.putExtra("username_key", username);
+                intent.putExtra("password_key", Password);
+                startActivity(intent);
+
+             }
+
+            });
+        }
+    }
+
+welcome activity.xml
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Welcome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</android.support.constraint.ConstraintLayout>
+
+welcome activity.java
+
+package com.example.myapplication;
+
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class WelcomeActivity extends AppCompatActivity {
+    TextView WT1;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.welcome_activity);
+
+        WT1 = findViewById(R.id.textView3);
+        Intent intent = getIntent();
+
+
+        String username = intent.getStringExtra("username_key");
+        String password = intent.getStringExtra("password_key");
+        WT1.setText("Welcome, " + username + "!\nYour password is: " + password);
+    }
+}
+
